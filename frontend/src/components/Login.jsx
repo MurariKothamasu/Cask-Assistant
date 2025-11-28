@@ -13,7 +13,7 @@ export default function Login({ onLogin, onNavigateSignup }) {
     setError("");
     setIsLoading(true);
     try {
-      const res = await fetch("${API_URL}/login", {
+      const res = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

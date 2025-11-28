@@ -52,7 +52,7 @@ export default function VoiceAssistant() {
   const fetchUser = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("${API_URL}/me", {
+      const res = await fetch(`${API_URL}/me`, {
         headers: { "Authorization": `Bearer ${token}` }
       });
       if (res.ok) {
@@ -215,7 +215,7 @@ export default function VoiceAssistant() {
     if (selectedVoice?.type === "openai") {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch("${API_URL}/speak", {
+        const res = await fetch(`${API_URL}/speak`, {
           method: "POST",
           headers: { 
             "Content-Type": "application/json",
@@ -298,7 +298,7 @@ export default function VoiceAssistant() {
 
         try {
           const token = localStorage.getItem("token");
-          const res = await fetch("${API_URL}/ask", {
+          const res = await fetch(`${API_URL}/ask`, {
             method: "POST",
             headers: { 
               "Content-Type": "application/json",
