@@ -67,7 +67,7 @@ export default function VoiceAssistant() {
   const fetchChats = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("${API_URL}/chats", {
+      const res = await fetch(`${API_URL}/chats`, {
         headers: { "Authorization": `Bearer ${token}` }
       });
       if (res.status === 401 || res.status === 403) {
@@ -91,7 +91,7 @@ export default function VoiceAssistant() {
   const createNewChat = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("${API_URL}/chats", {
+      const res = await fetch(`${API_URL}/chats`, {
         method: "POST",
         headers: { "Authorization": `Bearer ${token}` }
       });
