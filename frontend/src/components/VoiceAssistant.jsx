@@ -13,6 +13,7 @@ const OPENAI_VOICES = [
 ];
 
 export default function VoiceAssistant() {
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -51,7 +52,7 @@ export default function VoiceAssistant() {
   const fetchUser = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:3000/me", {
+      const res = await fetch("${API_URL}/me", {
         headers: { "Authorization": `Bearer ${token}` }
       });
       if (res.ok) {
@@ -66,7 +67,7 @@ export default function VoiceAssistant() {
   const fetchChats = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:3000/chats", {
+      const res = await fetch("${API_URL}/chats", {
         headers: { "Authorization": `Bearer ${token}` }
       });
       if (res.status === 401 || res.status === 403) {
@@ -90,7 +91,7 @@ export default function VoiceAssistant() {
   const createNewChat = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:3000/chats", {
+      const res = await fetch("${API_URL}/chats", {
         method: "POST",
         headers: { "Authorization": `Bearer ${token}` }
       });
@@ -110,7 +111,7 @@ export default function VoiceAssistant() {
     setCurrentChatId(chatId);
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:3000/chats/${chatId}`, {
+      const res = await fetch(`${API_URL}/chats/${chatId}`, {
         headers: { "Authorization": `Bearer ${token}` }
       });
       if (res.ok) {
@@ -134,7 +135,7 @@ export default function VoiceAssistant() {
     
     try {
       const token = localStorage.getItem("token");
-      await fetch(`http://localhost:3000/chats/${chatId}`, {
+      await fetch(`${API_URL}/chats/${chatId}`, {
         method: "DELETE",
         headers: { "Authorization": `Bearer ${token}` }
       });
@@ -214,7 +215,7 @@ export default function VoiceAssistant() {
     if (selectedVoice?.type === "openai") {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch("http://localhost:3000/speak", {
+        const res = await fetch("${API_URL}/speak", {
           method: "POST",
           headers: { 
             "Content-Type": "application/json",
@@ -297,7 +298,7 @@ export default function VoiceAssistant() {
 
         try {
           const token = localStorage.getItem("token");
-          const res = await fetch("http://localhost:3000/ask", {
+          const res = await fetch("${API_URL}/ask", {
             method: "POST",
             headers: { 
               "Content-Type": "application/json",

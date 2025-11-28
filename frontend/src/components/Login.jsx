@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Mail, Lock, LogIn } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 export default function Login({ onLogin, onNavigateSignup }) {
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -12,7 +13,7 @@ export default function Login({ onLogin, onNavigateSignup }) {
     setError("");
     setIsLoading(true);
     try {
-      const res = await fetch("http://localhost:3000/login", {
+      const res = await fetch("${API_URL}/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

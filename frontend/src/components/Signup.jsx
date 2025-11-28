@@ -3,6 +3,7 @@ import { Mail, Lock, User, UserPlus } from "lucide-react";
 import { useNavigate } from "react-router-dom"; // ✅ import navigation
 
 export default function Signup() {
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +19,7 @@ export default function Signup() {
     setIsLoading(true);
 
     try {
-      const res = await fetch("http://localhost:3000/signup", {
+      const res = await fetch("${API_URL}/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),
